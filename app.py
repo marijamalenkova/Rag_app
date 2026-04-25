@@ -341,38 +341,49 @@ the full depth of Macedonian culinary culture."""
 # Cached heavy resources (loaded once, reused across reruns)
 # ──────────────────────────────────────────────────────────────────────
  
-@st.cache_resource(show_spinner="Loading embedding model...")
-def load_embedding_model():
-    from langchain_huggingface import HuggingFaceEmbeddings
-    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
- 
- 
-@st.cache_resource(show_spinner="Building vector database...")
+@st.cache_resource(show_spinner="Loading knowledge base...")
 def build_vector_store(_documents: tuple):
-    """Chunk documents, embed them, and store in ChromaDB."""
-    from langchain_text_splitters import RecursiveCharacterTextSplitter
-    from langchain_community.vectorstores import Chroma
- 
-    # --- Chunking ---
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50,
-        separators=["\n\n", "\n", ". ", " ", ""],
-    )
-    chunks = []
-    for doc in _documents:
-        chunks.extend(splitter.split_text(doc))
- 
-    embeddings = load_embedding_model()
- 
-    # --- Store in ChromaDB ---
-    vector_store = Chroma.from_texts(
-        texts=chunks,
-        embedding=embeddings,
-        collection_name="knowledge_base",
-    )
-    return vector_store, chunks
- 
+    """Load pre-computed embeddings. Only embeds the user query at search time
+    (one tiny vector, not the whole corpus) — stays well under 512MB."""
+    import pickle
+    import numpy as np
+
+    with open("embeddings.pkl", "rb") as f:
+        data = pickle.load(f)
+
+    chunks   = data["chunks"]
+    vectors  = data["vectors"]          # shape: (n_chunks, 384)
+
+    class LightVectorStore:
+        def __init__(self, chunks, vectors):
+            self.chunks  = chunks
+            self.vectors = vectors
+            self._model  = None
+
+        def _get_model(self):
+            # Model is loaded lazily and cached — only used for single query vectors
+            if self._model is None:
+                from langchain_huggingface import HuggingFaceEmbeddings
+                self._model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+            return self._model
+
+        def similarity_search_with_score(self, query, k=3):
+            import numpy as np
+            from collections import namedtuple
+
+            model      = self._get_model()
+            query_vec  = np.array(model.embed_query(query), dtype=np.float32)
+
+            # Cosine similarity
+            norms      = np.linalg.norm(self.vectors, axis=1)
+            q_norm     = np.linalg.norm(query_vec)
+            scores     = self.vectors.dot(query_vec) / (norms * q_norm + 1e-9)
+
+            top_k      = np.argsort(scores)[::-1][:k]
+            Doc        = namedtuple("Doc", ["page_content"])
+            return [(Doc(self.chunks[i]), 1 - float(scores[i])) for i in top_k]
+
+    return LightVectorStore(chunks, vectors), chunks
  
 # ──────────────────────────────────────────────────────────────────────
 # SIDEBAR
