@@ -121,16 +121,34 @@ lentils, and vegetables are important parts of the food culture.""",
  
 @st.cache_resource(show_spinner="Loading embedding model...")
 def load_embedding_model():
-    from langchain_huggingface import HuggingFaceEmbeddings
-    return HuggingFaceEmbeddings(model_name="paraphrase-MiniLM-L3-v2")
+    from sentence_transformers import SentenceTransformer
+    return SentenceTransformer("paraphrase-MiniLM-L3-v2")
+
+class SimpleVectorStore:
+    def __init__(self, chunks, embeddings, model):
+        self.chunks = chunks
+        self.embeddings = embeddings
+        self.model = model
+
+    def similarity_search_with_score(self, query, k=3):
+        query_emb = self.model.encode([query], convert_to_numpy=True)[0]
+        norms = (np.linalg.norm(self.embeddings, axis=1)
+                 * np.linalg.norm(query_emb))
+        norms = np.where(norms == 0, 1e-10, norms)
+        similarities = np.dot(self.embeddings, query_emb) / norms
+        top_k = np.argsort(similarities)[::-1][:k]
+
+        class Doc:
+            def __init__(self, content):
+                self.page_content = content
+
+        return [(Doc(self.chunks[i]), 1 - float(similarities[i]))
+                for i in top_k]
 
 @st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
-    """Chunk documents, embed them, and store in ChromaDB."""
     from langchain_text_splitters import RecursiveCharacterTextSplitter
-    from langchain_community.vectorstores import Chroma
 
-    # --- Chunking ---
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=400,
         chunk_overlap=50,
@@ -140,15 +158,10 @@ def build_vector_store(_documents: tuple):
     for doc in _documents:
         chunks.extend(splitter.split_text(doc))
 
-    embeddings = load_embedding_model()
+    model = load_embedding_model()
+    embeddings = model.encode(chunks, convert_to_numpy=True)
 
-    # --- Store in ChromaDB ---
-    vector_store = Chroma.from_texts(
-        texts=chunks,
-        embedding=embeddings,
-        collection_name="knowledge_base",
-    )
-    return vector_store, chunks
+    return SimpleVectorStore(chunks, embeddings, model), chunks
  
 # ──────────────────────────────────────────────────────────────────────
 # SIDEBAR

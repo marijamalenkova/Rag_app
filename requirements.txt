@@ -5,10 +5,5 @@ streamlit-option-menu
 numpy
 pandas
 altair
-langchain
-langchain-community
-langchain-core
 langchain-text-splitters
-langchain-huggingface
-chromadb
 sentence-transformers
