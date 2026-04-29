@@ -8,3 +8,4 @@ dist/
 build/
 .streamlit/secrets.toml
 chroma_data/
+*.pkl
