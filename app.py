@@ -122,7 +122,7 @@ lentils, and vegetables are important parts of the food culture.""",
 @st.cache_resource(show_spinner="Loading embedding model...")
 def load_embedding_model():
     from langchain_huggingface import HuggingFaceEmbeddings
-    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    return HuggingFaceEmbeddings(model_name="paraphrase-MiniLM-L3-v2")
 
 @st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
@@ -347,7 +347,7 @@ if page == "Home":
     """, unsafe_allow_html=True)
 
     st.markdown("")
-    st.caption("Built with Streamlit · LangChain · ChromaDB · all-MiniLM-L6-v2")
+    st.caption("Built with Streamlit · LangChain · ChromaDB · paraphrase-MiniLM-L3-v2")
  
  
  
@@ -492,7 +492,7 @@ elif page == "Search":
     stat1.metric("Documents", len(DOCUMENTS))
     stat2.metric("Chunks", len(chunks))
     stat3.metric("Query length", len(query) if query else 0)
-    st.caption("Powered by all-MiniLM-L6-v2 embeddings + ChromaDB") 
+    st.caption("Powered by paraphrase-MiniLM-L3-v2 embeddings + ChromaDB") 
  
 # 
  
@@ -739,7 +739,7 @@ elif page == "Explore Chunks":
             st.text(chunk)
 
     st.markdown("---")
-    st.caption("Powered by all-MiniLM-L6-v2 embeddings + ChromaDB")
+    st.caption("Powered by paraphrase-MiniLM-L3-v2 embeddings + ChromaDB")
 
 # ──────────────────────────────────────────────────────────────────────
 # ABOUT PAGE
@@ -822,7 +822,7 @@ elif page == "About":
     """, unsafe_allow_html=True)
 
     stack = [
-        ("🧠", "Embedding model", "all-MiniLM-L6-v2"),
+        ("🧠", "Embedding model", "paraphrase-MiniLM-L3-v2"),
         ("🗄️", "Vector database",  "ChromaDB"),
         ("✂️", "Chunking method",  "RecursiveCharacterTextSplitter"),
         ("📐", "Chunk size",       "400 chars / 50 overlap"),
@@ -853,7 +853,7 @@ elif page == "About":
                 </div>
             """, unsafe_allow_html=True)
 
-    st.caption("Built with Streamlit · LangChain · ChromaDB · all-MiniLM-L6-v2")
+    st.caption("Built with Streamlit · LangChain · ChromaDB · paraphrase-MiniLM-L3-v2")
  
     
 # ──────────────────────────────────────────────────────────────────────
