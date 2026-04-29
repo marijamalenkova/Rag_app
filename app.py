@@ -120,34 +120,33 @@ lentils, and vegetables are important parts of the food culture.""",
 # ──────────────────────────────────────────────────────────────────────
  
 @st.cache_resource(show_spinner="Loading embedding model...")
-def load_embedding_model():
-    from sentence_transformers import SentenceTransformer
-    return SentenceTransformer("paraphrase-MiniLM-L3-v2")
 
 class SimpleVectorStore:
-    def __init__(self, chunks, embeddings, model):
+    def __init__(self, chunks, matrix, vectorizer):
         self.chunks = chunks
-        self.embeddings = embeddings
-        self.model = model
+        self.matrix = matrix
+        self.vectorizer = vectorizer
 
     def similarity_search_with_score(self, query, k=3):
-        query_emb = self.model.encode([query], convert_to_numpy=True)[0]
-        norms = (np.linalg.norm(self.embeddings, axis=1)
-                 * np.linalg.norm(query_emb))
-        norms = np.where(norms == 0, 1e-10, norms)
-        similarities = np.dot(self.embeddings, query_emb) / norms
-        top_k = np.argsort(similarities)[::-1][:k]
+        from sklearn.metrics.pairwise import cosine_similarity
+        import numpy as np
+
+        query_vec = self.vectorizer.transform([query])
+        scores = cosine_similarity(query_vec, self.matrix)[0]
+        top_k = np.argsort(scores)[::-1][:k]
 
         class Doc:
             def __init__(self, content):
                 self.page_content = content
 
-        return [(Doc(self.chunks[i]), 1 - float(similarities[i]))
+        return [(Doc(self.chunks[i]), 1 - float(scores[i]))
                 for i in top_k]
 
 @st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
     from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    import numpy as np
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=400,
@@ -158,11 +157,11 @@ def build_vector_store(_documents: tuple):
     for doc in _documents:
         chunks.extend(splitter.split_text(doc))
 
-    model = load_embedding_model()
-    embeddings = model.encode(chunks, convert_to_numpy=True)
+    vectorizer = TfidfVectorizer()
+    matrix = vectorizer.fit_transform(chunks)
 
-    return SimpleVectorStore(chunks, embeddings, model), chunks
- 
+    return SimpleVectorStore(chunks, matrix, vectorizer), chunks
+
 # ──────────────────────────────────────────────────────────────────────
 # SIDEBAR
 # ──────────────────────────────────────────────────────────────────────
@@ -360,7 +359,7 @@ if page == "Home":
     """, unsafe_allow_html=True)
 
     st.markdown("")
-    st.caption("Built with Streamlit · LangChain · ChromaDB · paraphrase-MiniLM-L3-v2")
+    st.caption("Built with Streamlit · LangChain · ChromaDB · TF-IDF (scikit-learn)")
  
  
  
@@ -505,7 +504,7 @@ elif page == "Search":
     stat1.metric("Documents", len(DOCUMENTS))
     stat2.metric("Chunks", len(chunks))
     stat3.metric("Query length", len(query) if query else 0)
-    st.caption("Powered by paraphrase-MiniLM-L3-v2 embeddings + ChromaDB") 
+    st.caption("Powered by TF-IDF (scikit-learn) embeddings + ChromaDB") 
  
 # 
  
@@ -752,7 +751,7 @@ elif page == "Explore Chunks":
             st.text(chunk)
 
     st.markdown("---")
-    st.caption("Powered by paraphrase-MiniLM-L3-v2 embeddings + ChromaDB")
+    st.caption("Powered by  TF-IDF (scikit-learn) embeddings + ChromaDB")
 
 # ──────────────────────────────────────────────────────────────────────
 # ABOUT PAGE
@@ -835,7 +834,7 @@ elif page == "About":
     """, unsafe_allow_html=True)
 
     stack = [
-        ("🧠", "Embedding model", "paraphrase-MiniLM-L3-v2"),
+        ("🧠", "Embedding model", "TF-IDF (scikit-learn)"),
         ("🗄️", "Vector database",  "ChromaDB"),
         ("✂️", "Chunking method",  "RecursiveCharacterTextSplitter"),
         ("📐", "Chunk size",       "400 chars / 50 overlap"),
@@ -866,7 +865,7 @@ elif page == "About":
                 </div>
             """, unsafe_allow_html=True)
 
-    st.caption("Built with Streamlit · LangChain · ChromaDB · paraphrase-MiniLM-L3-v2")
+    st.caption("Built with Streamlit · LangChain · ChromaDB · TF-IDF (scikit-learn)")
  
     
 # ──────────────────────────────────────────────────────────────────────
