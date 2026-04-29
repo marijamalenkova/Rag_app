@@ -1,7 +1,9 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
 streamlit
 streamlit-option-menu
 numpy
 pandas
 altair
-scikit-learn
+sentence-transformers
 langchain-text-splitters

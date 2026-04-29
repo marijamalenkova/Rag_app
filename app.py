@@ -2,7 +2,7 @@
 RAG Knowledge Base
  
 A simple Retrieval-Augmented Generation (RAG) app built with
-Streamlit, LangChain, and scikit-learn TF-IDF. No API keys needed!
+Streamlit, LangChain, and all-MiniLM-L6-v2. No API keys needed!
  
 """
  
@@ -120,19 +120,19 @@ lentils, and vegetables are important parts of the food culture.""",
 # ──────────────────────────────────────────────────────────────────────
  
 class SimpleVectorStore:
-    def __init__(self, chunks, matrix, vectorizer):
+    def __init__(self, chunks, matrix, model):
         self.chunks = chunks
         self.matrix = matrix
-        self.vectorizer = vectorizer
+        self.model = model
 
     def similarity_search_with_score(self, query, k=3):
         import numpy as np
 
-        query_vec = self.vectorizer.transform([query]).toarray()
-        scores = np.dot(query_vec, self.matrix.T)[0]
-        norms = (np.linalg.norm(query_vec) * np.linalg.norm(self.matrix, axis=1))
+        query_vec = self.model.encode([query], convert_to_numpy=True)[0]
+        norms = (np.linalg.norm(self.matrix, axis=1)
+                 * np.linalg.norm(query_vec))
         norms = np.where(norms == 0, 1e-10, norms)
-        scores = scores / norms
+        scores = np.dot(self.matrix, query_vec) / norms
         top_k = np.argsort(scores)[::-1][:k]
 
         class Doc:
@@ -142,11 +142,17 @@ class SimpleVectorStore:
         return [(Doc(self.chunks[i]), 1 - float(scores[i]))
                 for i in top_k]
 
+
+@st.cache_resource(show_spinner="Loading embedding model...")
+def load_embedding_model():
+    from sentence_transformers import SentenceTransformer
+    return SentenceTransformer("all-MiniLM-L6-v2")
+
+
 @st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
-    """Chunk documents and build a TF-IDF vector store."""
+    """Chunk documents and build a numpy vector store."""
     from langchain_text_splitters import RecursiveCharacterTextSplitter
-    from sklearn.feature_extraction.text import TfidfVectorizer
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=400,
@@ -157,10 +163,10 @@ def build_vector_store(_documents: tuple):
     for doc in _documents:
         chunks.extend(splitter.split_text(doc))
 
-    vectorizer = TfidfVectorizer()
-    matrix = vectorizer.fit_transform(chunks).toarray()
+    model = load_embedding_model()
+    matrix = model.encode(chunks, convert_to_numpy=True)
 
-    return SimpleVectorStore(chunks, matrix, vectorizer), chunks
+    return SimpleVectorStore(chunks, matrix, model), chunks
  
 # ──────────────────────────────────────────────────────────────────────
 # SIDEBAR
@@ -359,7 +365,7 @@ if page == "Home":
     """, unsafe_allow_html=True)
 
     st.markdown("")
-    st.caption("Built with Streamlit · LangChain · scikit-learn TF-IDF")
+    st.caption("Built with Streamlit · LangChain · all-MiniLM-L6-v2")
  
  
  
@@ -504,7 +510,7 @@ elif page == "Search":
     stat1.metric("Documents", len(DOCUMENTS))
     stat2.metric("Chunks", len(chunks))
     stat3.metric("Query length", len(query) if query else 0)
-    st.caption("Powered by scikit-learn TF-IDF · LangChain text splitter")
+    st.caption("Powered by all-MiniLM-L6-v2 · LangChain text splitter")
  
 # 
  
@@ -751,7 +757,7 @@ elif page == "Explore Chunks":
             st.text(chunk)
 
     st.markdown("---")
-    st.caption("Powered by scikit-learn TF-IDF · LangChain text splitter")
+    st.caption("Powered by all-MiniLM-L6-v2  · LangChain text splitter")
 
 # ──────────────────────────────────────────────────────────────────────
 # ABOUT PAGE
@@ -788,8 +794,8 @@ elif page == "About":
 
     steps = [
         ("01", "Chunk",   "Documents are split into small overlapping passages using RecursiveCharacterTextSplitter."),
-        ("02", "Embed",   "Each chunk is converted into a TF-IDF vector using scikit-learn's TfidfVectorizer."),
-        ("03", "Store",   "Vectors are stored as a numpy array in memory — no external database needed."),
+        ("02", "Embed",   "Each chunk is converted into a vector using all-MiniLM-L6-v2."),
+        ("03", "Store",   "Vectors are stored as a numpy vector store in memory — no external database needed."),
         ("04", "Search",  "Your query is embedded and compared to every chunk by cosine similarity."),
         ("05", "Return",  "The closest matching chunks are ranked and returned as results."),
     ]
@@ -834,8 +840,8 @@ elif page == "About":
     """, unsafe_allow_html=True)
 
     stack = [
-        ("🧠", "Embedding model", "TF-IDF (scikit-learn)"),
-        ("🗄️", "Vector database",  "Numpy in-memory array"),
+        ("🧠", "Embedding model", "all-MiniLM-L6-v2"),
+        ("🗄️", "Vector database",  "Numpy vector store"),
         ("✂️", "Chunking method",  "RecursiveCharacterTextSplitter"),
         ("📐", "Chunk size",       "400 chars / 50 overlap"),
         ("🖥️", "Framework",        "Streamlit + LangChain"),
@@ -865,7 +871,7 @@ elif page == "About":
                 </div>
             """, unsafe_allow_html=True)
 
-    st.caption("Built with Streamlit · LangChain · scikit-learn TF-IDF")
+    st.caption("Built with Streamlit · LangChain · all-MiniLM-L6-v2")
  
     
 # ──────────────────────────────────────────────────────────────────────
