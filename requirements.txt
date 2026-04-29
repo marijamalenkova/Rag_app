@@ -1,12 +1,14 @@
-streamlit>=1.30.0
-langchain>=0.2.0
-langchain-community>=0.2.0
-langchain-huggingface>=0.0.3
-langchain-text-splitters>=0.2.0
-chromadb>=0.4.22
-sentence-transformers>=2.2.2
-numpy>=1.24.0
-pandas>=2.0.0
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+streamlit
 streamlit-option-menu
-matplotlib
-scikit-learn      
+numpy
+pandas
+altair
+langchain
+langchain-community
+langchain-core
+langchain-text-splitters
+langchain-huggingface
+chromadb
+sentence-transformers

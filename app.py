@@ -42,296 +42,74 @@ div[data-testid="stMetricValue"] > div {
 
 DOCUMENTS = [
 
-    """Macedonian cuisine is one of the richest and most distinctive food 
-traditions in the Balkans. Shaped by centuries of Ottoman, Byzantine, 
-and Mediterranean influence, as well as by the country's varied geography 
-and climate, it offers a deeply satisfying combination of flavors, 
-techniques, and ingredients. The cuisine is largely based on fresh 
-vegetables, slow-cooked meats, dairy products, legumes, and aromatic 
-herbs.
+    """Macedonian cuisine is a Balkan cuisine shaped by Ottoman, Byzantine, and
+Mediterranean influences. It is based on fresh vegetables, beans, dairy
+products, bread, grilled meats, and aromatic herbs. Seasonal ingredients
+are key: fresh vegetables dominate spring and summer, while pickled and
+preserved foods are used in winter. Food is strongly connected to
+hospitality, family meals, and social gatherings.""",
 
-A defining characteristic of Macedonian food is its emphasis on 
-freshness and seasonality. Meals are built around whatever is available 
-locally and in season, with preservation techniques such as drying, 
-pickling, and fermenting playing an important role in extending the 
-harvest throughout the year. The result is a cuisine that changes with 
-the seasons and remains closely connected to the agricultural landscape.
+    """Tavče Gravče is the national dish of North Macedonia. It is a baked bean
+dish made with white beans, onions, peppers, oil, and mint, cooked in a
+traditional clay pot called a tavče. The pot gives the dish a creamy inside
+and a slightly crispy top. It is served as a main dish or with grilled meat
+and is popular during Orthodox fasting because it can be made without meat
+or dairy.""",
 
-Meals in Macedonia are rarely rushed. Eating together is a social 
-activity, and hospitality is expressed through generous portions, 
-numerous dishes, and a warm welcome to guests. Offering food and drink 
-to a visitor is considered a basic expression of respect and friendship, 
-and refusing hospitality can be seen as impolite. This culture of 
-generosity shapes every aspect of how food is prepared and shared.""",
+    """Ajvar is a roasted red pepper spread and one of the most recognizable
+foods in Macedonia. Peppers are roasted, peeled, ground, and slowly cooked
+with oil and salt. Some versions include eggplant, garlic, or chili. Ajvar
+is eaten with bread, cheese, or grilled meats and is a key part of meze.
+Families often prepare it together in autumn and store it in jars for
+winter.""",
 
+    """Kebapi are small grilled rolls of minced meat, made from beef, pork, or
+a mix of both. They are cooked over charcoal and served with lepinja bread,
+raw onion, ajvar, and white cheese. Kebapi are found in grill restaurants,
+street food stands, and home gatherings. They are one of the most popular
+everyday grilled dishes in Macedonia.""",
 
-    """Tavce gravce is widely regarded as the national dish of North 
-Macedonia. It is a hearty baked bean dish prepared with dried white 
-beans, onions, peppers, and a blend of spices including dried red pepper 
-and mint. The beans are first cooked and then finished in a traditional 
-earthenware pot called a tavce, which gives the dish both its name and 
-its characteristic flavor. The slow baking in a clay vessel creates a 
-slightly crispy top layer while keeping the inside creamy and rich.
+    """Pastrmajlija is a regional specialty from Shtip in eastern Macedonia.
+It is an oval flatbread topped with pieces of salted or dried pork called
+pastrma, baked in a hot oven until the bread is crispy and the meat is
+rich and aromatic. Pastrmajlija is eaten hot and is considered one of
+Macedonia's best-known regional dishes.""",
 
-The dish is often served as a main course on its own or alongside grilled 
-meats. It is also a common choice for fasting periods in the Orthodox 
-Christian calendar, as it contains no meat and is naturally filling and 
-nutritious. Different families and regions have their own variations of 
-the recipe, with adjustments in the type of pepper used, the amount of 
-fat, and the choice of additional vegetables.
+    """Shopska Salata is one of the most common salads in Macedonian cuisine.
+It is made from tomatoes, cucumbers, onions, and grated white brined
+cheese called sirenje, dressed with oil. Stuffed vegetables are also
+popular: polneti piperki (stuffed peppers) are filled with rice, minced
+meat, herbs, and spices, then baked in tomato sauce. These dishes are
+everyday staples of Macedonian home cooking.""",
 
-Tavce gravce is present at family gatherings, celebrations, and everyday 
-tables alike. It represents the broader value placed on simple, 
-ingredient-driven cooking in Macedonian food culture, where patience in 
-preparation and quality of raw materials matter more than elaborate 
-technique.""",
+    """Macedonian dairy products appear in many everyday meals. Sirenje is a
+soft white brined cheese, salty and tangy, eaten with bread, salads, and
+grilled meats. Kashkaval is a hard yellow cheese that can be served cold,
+melted, or fried. Kiselo mleko is a sour milk similar to yogurt and is
+eaten with bread, burek, soups, and beans.""",
 
+    """Bread and pastries are central to Macedonian food culture. Pogača is a
+round bread prepared for everyday meals and celebrations. Burek is thin
+filo pastry filled with cheese, minced meat, or spinach, usually eaten
+for breakfast with kiselo mleko. Zelnik is similar but filled with
+greens, leek, egg, and cheese. Macedonian sweets include baklava, tulumbi,
+halva, and sutlija, which is rice pudding made from rice, milk, and sugar.""",
 
-    """Ajvar is a roasted red pepper relish that is among the most iconic 
-condiments in Macedonian cuisine. It is made primarily from fleshy red 
-peppers, which are first roasted over an open flame or in a wood-fired 
-oven, then peeled, ground, and cooked down slowly with oil and salt. 
-Some versions include roasted eggplant, which adds depth and a slightly 
-smoky character. Garlic, vinegar, and chili peppers are used in varying 
-amounts depending on regional and family traditions.
+    """North Macedonia produces wine and rakija. The main grape variety is
+Vranec, a dark full bodied red wine grown in the Vardar region.
+International varieties such as Cabernet Sauvignon, Merlot, and
+Chardonnay are also produced. Rakija is a traditional fruit brandy made
+from grapes, plums, or quince. It is served before and after meals and
+during celebrations. Sharing rakija is a gesture of hospitality and
+friendship.""",
 
-The preparation of ajvar is one of the most significant annual food 
-events in Macedonia. In late summer and early autumn, when peppers are 
-at peak ripeness and available in abundance, families gather to make 
-large quantities of ajvar together. The process involves roasting 
-hundreds of peppers, peeling them by hand, and stirring the mixture 
-over heat for several hours until it reaches the right consistency. 
-This collective effort reinforces family bonds and community ties.
-
-Once cooled and jarred, ajvar is stored for use throughout the winter 
-months. It is served as a spread on bread, as a side dish, as a topping 
-for grilled meats, and as a flavor base for cooked dishes. Ajvar is 
-so deeply embedded in Macedonian food culture that it is considered 
-a symbol of the country's culinary identity.""",
-
-
-    """Macedonian grilled meats are central to the country's food culture. 
-The most common forms include kebapi, which are small elongated rolls 
-of seasoned minced meat, typically made from beef, pork, or a mixture 
-of the two, and cooked directly on a charcoal grill. Kebapi are usually 
-served in a flatbread called lepinja, accompanied by raw onion, ajvar, 
-and fresh cheese. They are found at dedicated grilling restaurants, 
-at street food stalls, and at home gatherings across the country.
-
-Pastrmajlija is another beloved meat dish, originating from the city 
-of Shtip in eastern Macedonia. It consists of pieces of cured pork 
-meat arranged on an oval leavened dough base and baked in a wood-fired 
-oven until the edges of the dough are crispy and the meat is tender 
-and aromatic. Pastrmajlija is often considered a regional specialty 
-unique to Macedonia, though it has become popular throughout the country.
-
-Sis kebab refers to cubes or pieces of marinated meat skewered and 
-grilled over charcoal. Lamb, chicken, and pork are all used. Grilling 
-is closely associated with festive occasions, summer gatherings, and 
-weekend meals in Macedonia, and the preparation of a proper charcoal 
-fire is itself considered a skill worth taking seriously.""",
-
-
-    """Fresh vegetables occupy a central role in Macedonian cuisine. The 
-country benefits from a continental and Mediterranean climate that 
-supports abundant production of tomatoes, peppers, cucumbers, eggplant, 
-zucchini, onions, garlic, and leafy greens. Vegetable dishes are eaten 
-throughout the year, with seasonal variation determining what is served 
-at any given time.
-
-Shopska salata is the most widely recognized salad in Macedonian and 
-regional Balkan cuisine. It is made from diced tomatoes, cucumbers, and 
-raw onions, topped with finely grated white brined cheese, and dressed 
-with oil and occasionally vinegar. The combination of the crisp raw 
-vegetables and the salty cheese has made shopska salata a standard 
-accompaniment to nearly every meal, from simple everyday lunches to 
-festive spreads.
-
-Stuffed vegetables, known locally as polneti piperki or polneta tikvicka, 
-are popular dishes prepared by filling hollowed peppers or zucchini with 
-a mixture of seasoned rice, minced meat, and onion, then baking them 
-slowly in tomato sauce or stock. These dishes are often prepared in 
-large batches and eaten over several days, as the flavors deepen on 
-reheating. Seasonal soups made from fresh vegetables are also a 
-significant part of the Macedonian table, particularly during spring 
-and summer.""",
-
-
-    """Macedonian dairy products are diverse and deeply integrated into 
-the local diet. The most important is sirenje, a white brined cheese 
-made from cow's, sheep's, or goat's milk. Sirenje is soft and crumbly 
-with a salty, tangy flavor, and it is used in almost every context: 
-crumbled over salads, served alongside grilled meats, baked into 
-pastries, eaten with bread at breakfast, or combined with eggs. It is 
-one of the few products found on the table at virtually every meal.
-
-Kashkaval is a hard yellow cheese made primarily from sheep's milk or 
-a blend of sheep and cow milk. It is pressed, aged, and develops a 
-rich, buttery flavor that intensifies with time. Kashkaval is eaten 
-on its own as part of a cold appetizer spread, melted over dishes, 
-or fried in breadcrumbs as a hot starter. The sheep-milk varieties 
-from the Bitola and Ohrid regions are considered particularly fine.
-
-Kiselo mleko, a thick soured milk similar to yogurt but with a looser 
-texture and sharper tang, is consumed daily in many Macedonian 
-households. It is eaten with bread, alongside savory dishes, stirred 
-into soups, or used as the base of drinks. Full-fat kiselo mleko from 
-sheep or buffalo milk is especially prized for its richness. Dairy 
-farming has a long history in the mountainous regions of Macedonia, 
-and these products reflect that pastoral heritage.""",
-
-
-    """Bread holds an important symbolic and practical place in Macedonian 
-food culture. The most traditional form is pogaca, a round leavened 
-flatbread baked in a wood-fired oven or under a clay bell. Pogaca 
-can be plain or enriched with oil, cheese, or herbs. It is prepared 
-for everyday meals, but also for celebrations and ritual occasions, 
-where it may be decorated or made according to specific family recipes 
-passed down through generations.
-
-Burek is one of the most popular baked goods throughout North Macedonia. 
-It is made from thin sheets of filo pastry layered with fillings such 
-as white cheese, spinach, minced meat, or pumpkin, then baked until 
-golden and flaky. Burek is commonly eaten for breakfast with kiselo 
-mleko or yogurt, and bakeries producing fresh burek throughout the 
-day are a feature of every Macedonian town. The cheese and meat 
-varieties are the most traditional, though regional and seasonal 
-variations exist.
-
-Zelnik is a traditional pastry similar to burek, made with filo dough 
-and filled with young greens, leek, or spinach mixed with egg and 
-cheese. It is particularly common in spring when fresh greens are 
-available. Like burek, zelnik is baked in large round trays and cut 
-into portions for serving. Pastries and breads of this type form 
-an important bridge between the home kitchen and everyday public 
-eating culture in Macedonia.""",
-
-
-    """Macedonian sweets draw heavily from Ottoman pastry traditions 
-while incorporating local ingredients and preferences. Baklava is 
-perhaps the most internationally recognized sweet in this tradition, 
-made from many thin layers of filo pastry filled with chopped walnuts 
-or other nuts, baked until crisp, and then soaked in a sweet syrup 
-flavored with lemon or rose water. Macedonian baklava tends to use 
-walnuts as the primary filling and is typically cut into diamond shapes.
-
-Tulumbi are deep-fried dough pastries shaped like small ridged 
-cylinders, soaked in a thick sweet syrup immediately after frying. 
-They are commonly prepared during religious holidays and celebrations 
-and are sold at sweet shops alongside other syrup-soaked pastries. 
-The crispy exterior and sweet interior make them a popular treat 
-across generations.
-
-Halva, made from ground sesame paste or from semolina cooked with 
-oil and sugar, is another widely consumed sweet with deep roots in 
-Ottoman food culture. Homemade semolina halva is prepared in many 
-Macedonian households as a simple dessert or as an offering during 
-commemorative occasions. Sutlija, a rice pudding made with milk, 
-sugar, and rice, baked slowly until a golden crust forms on top, 
-is a beloved everyday dessert found in homes and small restaurants 
-across the country.""",
-
-
-    """North Macedonia has a long winemaking tradition, with evidence of 
-viticulture dating back several thousand years. The country today 
-produces wines from both international varieties such as Cabernet 
-Sauvignon, Merlot, Chardonnay, and Sauvignon Blanc, and from the 
-indigenous grape variety Vranec, which is the most widely planted 
-and most important local variety.
-
-Vranec produces a deeply colored, full-bodied red wine with robust 
-tannins, dark fruit notes, and good acidity. It grows well in the 
-warm continental climate of the Vardar wine region, which covers the 
-central part of the country. Wines made from Vranec range from 
-everyday table wines to structured premium bottles aged in oak. The 
-variety is unique to the southern Balkans and defines the character 
-of Macedonian red wine production.
-
-Rakija is the traditional distilled spirit throughout the Balkans 
-and holds a central place in Macedonian hospitality customs. It is 
-typically made from grapes, plums, or quince, and is consumed as 
-a welcome drink, at celebrations, after meals, and as a remedy for 
-various ailments according to folk tradition. Homemade rakija is 
-common, and sharing a glass is considered an important social 
-gesture. The quality and strength of rakija varies widely depending 
-on the producer and the fruit used.""",
-
-
-    """Macedonian cuisine shows significant variation across different 
-regions of the country, reflecting differences in climate, geography, 
-ethnic traditions, and historical influences. The western regions, 
-including Ohrid, Struga, and the mountainous areas near Albania, have 
-a strong tradition of freshwater fish dishes based on species found in 
-Lake Ohrid and Lake Prespa. Ohrid trout, which is a protected endemic 
-species, is a celebrated local ingredient, and grilled or baked fish 
-is a defining part of the diet in these areas.
-
-In eastern Macedonia, particularly around Shtip, Kochani, and Strumica, 
-the climate is warmer and produces excellent vegetables and rice. 
-Kochansko rice is grown in the Kochani valley and is considered among 
-the finest domestic rice varieties, used widely in traditional rice 
-dishes, stuffed vegetables, and pilaf. The eastern part of the country 
-also has a strong tradition of pepper growing, and many of the country's 
-best ajvar comes from this region.
-
-The capital Skopje reflects the urban diversity of Macedonian cuisine, 
-where traditional dishes exist alongside influences from Turkish, 
-Albanian, and Roma food cultures. The old bazaar area of Skopje, known 
-as Carsija, has been a center of food and commerce for centuries, and 
-the concentration of traditional eateries, sweet shops, and spice 
-vendors there offers one of the best introductions to the range of 
-flavors in Macedonian and regional Balkan cuisine.""",
-
-
-    """Meze culture is an important aspect of Macedonian hospitality and 
-dining. Meze refers to a selection of small dishes, both hot and cold, 
-served at the beginning of a meal or as the main basis of a shared 
-spread. A typical meze selection might include sliced sirenje, 
-kashkaval, cured meats, olives, roasted peppers, ajvar, fresh 
-tomatoes with oil, pickled vegetables, and bread. The variety of 
-dishes allows everyone at the table to taste a little of everything.
-
-Turshija refers to pickled vegetables and is an essential component 
-of the Macedonian table, particularly in autumn and winter when 
-fresh produce is less available. Cabbages, cucumbers, mixed vegetables, 
-and peppers are pickled in brine or vinegar and served as a sharp, 
-acidic counterpoint to rich grilled meats or heavy stews. Making 
-turshija at home is a common autumn tradition, often done alongside 
-the ajvar-making process.
-
-Pindjur is a cooked condiment similar in character to ajvar but made 
-from a mixture of roasted peppers, tomatoes, eggplant, and garlic, 
-cooked down together until thick and concentrated. It has a more 
-complex, slightly sweeter flavor than pure pepper ajvar and is used 
-in similar ways: as a bread spread, a side dish, or a flavoring 
-ingredient. Like ajvar, pindjur is made in large quantities in autumn 
-and preserved in jars for the winter months.""",
-
-
-    """The food calendar in North Macedonia is shaped by both agricultural 
-seasons and religious observance. The Orthodox Christian calendar 
-includes a substantial number of fasting periods throughout the year, 
-during which meat, dairy products, and eggs are avoided. This has 
-historically encouraged the development of a wide range of plant-based 
-dishes that are satisfying, flavorful, and filling without using 
-animal products.
-
-Lenten and fasting dishes include preparations based on beans, lentils, 
-chickpeas, dried mushrooms, rice, and seasonal vegetables. Many of 
-these recipes are ancient and have been passed down without significant 
-change over generations. The coincidence of fasting with winter months 
-also means that preserved vegetables, legumes, and dried herbs are 
-the main ingredients in many traditional fasting preparations.
-
-Spring and summer bring a transformation to the Macedonian kitchen, 
-as fresh herbs, young vegetables, and seasonal produce return to 
-the market. Lamb is the most traditional meat associated with the 
-Easter celebration, often roasted whole on a spit outdoors. Autumn 
-is the season of preserving, when families invest significant time 
-in making ajvar, pindjur, turshija, and other stored foods that will 
-sustain the household through the colder months. Understanding this 
-seasonal and religious food calendar is essential to understanding 
-the full depth of Macedonian culinary culture."""
+    """Macedonian cuisine varies by region. The west, near Lake Ohrid and Lake
+Prespa, is known for freshwater fish such as Ohrid trout. Eastern
+Macedonia is known for rice, peppers, tomatoes, and pastrmajlija. Skopje
+blends Macedonian, Turkish, Albanian, and Roma traditions, especially in
+the old Čaršija bazaar. Meze is shared small plates of cheese, meats,
+ajvar, and pickles, and Orthodox fasting dishes made from beans,
+lentils, and vegetables are important parts of the food culture.""",
 
 ]
 
@@ -341,49 +119,36 @@ the full depth of Macedonian culinary culture."""
 # Cached heavy resources (loaded once, reused across reruns)
 # ──────────────────────────────────────────────────────────────────────
  
-@st.cache_resource(show_spinner="Loading knowledge base...")
+@st.cache_resource(show_spinner="Loading embedding model...")
+def load_embedding_model():
+    from langchain_huggingface import HuggingFaceEmbeddings
+    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+
+@st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
-    """Load pre-computed embeddings. Only embeds the user query at search time
-    (one tiny vector, not the whole corpus) — stays well under 512MB."""
-    import pickle
-    import numpy as np
+    """Chunk documents, embed them, and store in ChromaDB."""
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain_community.vectorstores import Chroma
 
-    with open("embeddings.pkl", "rb") as f:
-        data = pickle.load(f)
+    # --- Chunking ---
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=400,
+        chunk_overlap=50,
+        separators=["\n\n", "\n", ". ", " ", ""],
+    )
+    chunks = []
+    for doc in _documents:
+        chunks.extend(splitter.split_text(doc))
 
-    chunks   = data["chunks"]
-    vectors  = data["vectors"]          # shape: (n_chunks, 384)
+    embeddings = load_embedding_model()
 
-    class LightVectorStore:
-        def __init__(self, chunks, vectors):
-            self.chunks  = chunks
-            self.vectors = vectors
-            self._model  = None
-
-        def _get_model(self):
-            # Model is loaded lazily and cached — only used for single query vectors
-            if self._model is None:
-                from langchain_huggingface import HuggingFaceEmbeddings
-                self._model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-            return self._model
-
-        def similarity_search_with_score(self, query, k=3):
-            import numpy as np
-            from collections import namedtuple
-
-            model      = self._get_model()
-            query_vec  = np.array(model.embed_query(query), dtype=np.float32)
-
-            # Cosine similarity
-            norms      = np.linalg.norm(self.vectors, axis=1)
-            q_norm     = np.linalg.norm(query_vec)
-            scores     = self.vectors.dot(query_vec) / (norms * q_norm + 1e-9)
-
-            top_k      = np.argsort(scores)[::-1][:k]
-            Doc        = namedtuple("Doc", ["page_content"])
-            return [(Doc(self.chunks[i]), 1 - float(scores[i])) for i in top_k]
-
-    return LightVectorStore(chunks, vectors), chunks
+    # --- Store in ChromaDB ---
+    vector_store = Chroma.from_texts(
+        texts=chunks,
+        embedding=embeddings,
+        collection_name="knowledge_base",
+    )
+    return vector_store, chunks
  
 # ──────────────────────────────────────────────────────────────────────
 # SIDEBAR
@@ -512,10 +277,10 @@ if page == "Home":
     features = [
         ("🫙", "Iconic Dishes",      "Tavče Gravče, Ajvar, Pastrmajlija — the pillars of Macedonian cooking."),
         ("🗺️", "Regional Flavours",  "From Ohrid's freshwater trout to Shtip's wood-fired pastrmajlija."),
-        ("🧀", "Dairy & Bread",      "Sirenje, kashkaval, burek, zelnik — staples of every Macedonian table."),
+        ("🧀", "Dairy & Bread",      "Sirenje, kashkaval, burek, zelnik, baklava — staples of every Macedonian table."),
         ("🍷", "Wine & Rakija",      "Vranec reds and fruit brandy rooted in centuries of Balkan viticulture."),
-        ("🌿", "Fasting Traditions", "Plant-based dishes shaped by the Orthodox Christian food calendar."),
-        ("🥗", "Meze Culture",       "Small shared plates that turn every meal into a communal celebration."),
+        ("🌿", "Fasting & Meze",     "Plant-based dishes shaped by Orthodoxy and shared small plates for every table."),
+        ("🥗", "Salads & Vegetables","Shopska Salata, stuffed peppers, and seasonal produce central to everyday meals."),
     ]
 
     c1, c2, c3 = st.columns(3)
@@ -648,8 +413,8 @@ elif page == "Search":
     # Hint cards
     hints = [
         "What is tavče gravče?",
-        "How is ajvar traditionally made?",
-        "What dairy products are used in Macedonian cooking?",
+        "What are the most popular grilled meat dishes?",
+        "How does Macedonian cuisine differ by region?",
         "What wines are produced in North Macedonia?",
     ]
     hint_html = "".join([
@@ -683,7 +448,7 @@ elif page == "Search":
         query = st.text_input("Your question",
                               placeholder="e.g. What are the most popular grilled meat dishes?")
     with col2:
-        num_results = st.slider("Results", 1, 10, 3)
+        num_results = st.slider("Results", 1, 3, 3)
 
     if query:
         with st.spinner("Searching..."):
@@ -766,7 +531,7 @@ elif page == "Gallery":
     """, unsafe_allow_html=True)
 
     gallery_items = [
-        ("ajvar.jpg",          "Ajvar",         "Condiment", "Roasted red pepper relish, slow-cooked with oil and salt."),
+        ("ajvar.jpg",          "Ajvar",         "Condiment", "Roasted red pepper relish, slow cooked with oil and salt."),
         ("pastrmajlija.jpg",   "Pastrmajlija",  "Specialty", "Oval baked dough topped with cured pork, a specialty of Shtip."),
         ("rakija.jpg",         "Rakija",         "Beverage",  "Traditional fruit brandy, the cornerstone of Macedonian hospitality."),
         ("shopska_salata.jpg", "Shopska Salata", "Salad",     "The iconic salad of tomato, cucumber, and grated white cheese."),
@@ -941,8 +706,8 @@ elif page == "Explore Chunks":
         <p style="font-size:0.8rem; color:#991212; font-weight:700;
                   text-transform:uppercase; letter-spacing:2px; margin-bottom:14px;">
             Browse chunks
-        </p>
-    """, unsafe_allow_html=True)
+            </p>
+             """, unsafe_allow_html=True)
 
     keyword = st.text_input(
         "Filter by keyword",
@@ -961,15 +726,11 @@ elif page == "Explore Chunks":
             padding: 10px 16px;
             margin-bottom: 14px;
             display: inline-block;
-        ">
+            ">
             <span style="color:#991212; font-weight:700;">
                 {len(filtered_chunks)}
-            </span>
-            <span style="color:#444; font-size:0.9rem;">
-                chunk{"s" if len(filtered_chunks) != 1 else ""} 
-                {"matching" if keyword else "total"}
-                {f" — <em>{keyword}</em>" if keyword else ""}
-            </span>
+              </span>
+            
         </div>
     """, unsafe_allow_html=True)
 
@@ -1064,7 +825,7 @@ elif page == "About":
         ("🧠", "Embedding model", "all-MiniLM-L6-v2"),
         ("🗄️", "Vector database",  "ChromaDB"),
         ("✂️", "Chunking method",  "RecursiveCharacterTextSplitter"),
-        ("📐", "Chunk size",       "500 chars / 50 overlap"),
+        ("📐", "Chunk size",       "400 chars / 50 overlap"),
         ("🖥️", "Framework",        "Streamlit + LangChain"),
         ("📚", "Documents",        f"{len(DOCUMENTS)} knowledge base entries"),
     ]
@@ -1144,12 +905,14 @@ elif page == "Examples":
     """, unsafe_allow_html=True)
 
     example_queries = [
-        "What is the national dish of North Macedonia?",
-        "How is ajvar made and when is it prepared?",
-        "What cheeses are traditional in Macedonian cuisine?",
-        "What grilled meat dishes are popular in Macedonia?",
-        "How does the Orthodox calendar influence Macedonian food?",
-    ]
+     "What is Tavče Gravče?",
+     "How is ajvar made and served?",
+     "What are kebapi served with?",
+     "What is Shopska Salata made of?",
+     "What dairy products are common in Macedonian cuisine?",
+     "What is Vranec wine?",
+     "What pastries and sweets are popular in Macedonia?",
+     "How does Macedonian cuisine differ by region?",]
 
     vector_store, chunks = build_vector_store(tuple(DOCUMENTS))
 
