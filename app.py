@@ -2,7 +2,7 @@
 RAG Knowledge Base
  
 A simple Retrieval-Augmented Generation (RAG) app built with
-Streamlit, LangChain, and ChromaDB. No API keys needed!
+Streamlit, LangChain, and scikit-learn TF-IDF. No API keys needed!
  
 """
  
@@ -93,10 +93,10 @@ round bread prepared for everyday meals and celebrations. Burek is thin
 filo pastry filled with cheese, minced meat, or spinach, usually eaten
 for breakfast with kiselo mleko. Zelnik is similar but filled with
 greens, leek, egg, and cheese. Macedonian sweets include baklava, tulumbi,
-halva, and sutlija, which is rice pudding made from rice, milk, and sugar.""",
+halva, and sutlija — rice pudding made from rice, milk, and sugar.""",
 
     """North Macedonia produces wine and rakija. The main grape variety is
-Vranec, a dark full bodied red wine grown in the Vardar region.
+Vranec, a dark full-bodied red wine grown in the Vardar region.
 International varieties such as Cabernet Sauvignon, Merlot, and
 Chardonnay are also produced. Rakija is a traditional fruit brandy made
 from grapes, plums, or quince. It is served before and after meals and
@@ -107,8 +107,8 @@ friendship.""",
 Prespa, is known for freshwater fish such as Ohrid trout. Eastern
 Macedonia is known for rice, peppers, tomatoes, and pastrmajlija. Skopje
 blends Macedonian, Turkish, Albanian, and Roma traditions, especially in
-the old Čaršija bazaar. Meze is shared small plates of cheese, meats,
-ajvar, and pickles, and Orthodox fasting dishes made from beans,
+the old Čaršija bazaar. Meze — shared small plates of cheese, meats,
+ajvar, and pickles — and Orthodox fasting dishes made from beans,
 lentils, and vegetables are important parts of the food culture.""",
 
 ]
@@ -119,7 +119,6 @@ lentils, and vegetables are important parts of the food culture.""",
 # Cached heavy resources (loaded once, reused across reruns)
 # ──────────────────────────────────────────────────────────────────────
  
-
 class SimpleVectorStore:
     def __init__(self, chunks, matrix, vectorizer):
         self.chunks = chunks
@@ -142,13 +141,12 @@ class SimpleVectorStore:
 
         return [(Doc(self.chunks[i]), 1 - float(scores[i]))
                 for i in top_k]
-    
 
 @st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
+    """Chunk documents and build a TF-IDF vector store."""
     from langchain_text_splitters import RecursiveCharacterTextSplitter
     from sklearn.feature_extraction.text import TfidfVectorizer
-    import numpy as np
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=400,
@@ -162,9 +160,8 @@ def build_vector_store(_documents: tuple):
     vectorizer = TfidfVectorizer()
     matrix = vectorizer.fit_transform(chunks).toarray()
 
-
     return SimpleVectorStore(chunks, matrix, vectorizer), chunks
-
+ 
 # ──────────────────────────────────────────────────────────────────────
 # SIDEBAR
 # ──────────────────────────────────────────────────────────────────────
@@ -362,7 +359,7 @@ if page == "Home":
     """, unsafe_allow_html=True)
 
     st.markdown("")
-    st.caption("Built with Streamlit · LangChain · ChromaDB · TF-IDF (scikit-learn)")
+    st.caption("Built with Streamlit · LangChain · scikit-learn TF-IDF")
  
  
  
@@ -428,8 +425,8 @@ elif page == "Search":
     # Hint cards
     hints = [
         "What is tavče gravče?",
-        "What are the most popular grilled meat dishes?",
-        "How does Macedonian cuisine differ by region?",
+        "How is ajvar traditionally made?",
+        "How is rakija made?",
         "What wines are produced in North Macedonia?",
     ]
     hint_html = "".join([
@@ -507,7 +504,7 @@ elif page == "Search":
     stat1.metric("Documents", len(DOCUMENTS))
     stat2.metric("Chunks", len(chunks))
     stat3.metric("Query length", len(query) if query else 0)
-    st.caption("Powered by TF-IDF (scikit-learn) embeddings + ChromaDB") 
+    st.caption("Powered by scikit-learn TF-IDF · LangChain text splitter")
  
 # 
  
@@ -754,7 +751,7 @@ elif page == "Explore Chunks":
             st.text(chunk)
 
     st.markdown("---")
-    st.caption("Powered by  TF-IDF (scikit-learn) embeddings + ChromaDB")
+    st.caption("Powered by scikit-learn TF-IDF · LangChain text splitter")
 
 # ──────────────────────────────────────────────────────────────────────
 # ABOUT PAGE
@@ -791,8 +788,8 @@ elif page == "About":
 
     steps = [
         ("01", "Chunk",   "Documents are split into small overlapping passages using RecursiveCharacterTextSplitter."),
-        ("02", "Embed",   "Each chunk is converted into a vector of numbers by the all-MiniLM-L6-v2 model."),
-        ("03", "Store",   "Vectors are indexed in ChromaDB, a local in-memory vector database."),
+        ("02", "Embed",   "Each chunk is converted into a TF-IDF vector using scikit-learn's TfidfVectorizer."),
+        ("03", "Store",   "Vectors are stored as a numpy array in memory — no external database needed."),
         ("04", "Search",  "Your query is embedded and compared to every chunk by cosine similarity."),
         ("05", "Return",  "The closest matching chunks are ranked and returned as results."),
     ]
@@ -838,7 +835,7 @@ elif page == "About":
 
     stack = [
         ("🧠", "Embedding model", "TF-IDF (scikit-learn)"),
-        ("🗄️", "Vector database",  "ChromaDB"),
+        ("🗄️", "Vector database",  "Numpy in-memory array"),
         ("✂️", "Chunking method",  "RecursiveCharacterTextSplitter"),
         ("📐", "Chunk size",       "400 chars / 50 overlap"),
         ("🖥️", "Framework",        "Streamlit + LangChain"),
@@ -868,7 +865,7 @@ elif page == "About":
                 </div>
             """, unsafe_allow_html=True)
 
-    st.caption("Built with Streamlit · LangChain · ChromaDB · TF-IDF (scikit-learn)")
+    st.caption("Built with Streamlit · LangChain · scikit-learn TF-IDF")
  
     
 # ──────────────────────────────────────────────────────────────────────
