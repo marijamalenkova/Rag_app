@@ -119,7 +119,6 @@ lentils, and vegetables are important parts of the food culture.""",
 # Cached heavy resources (loaded once, reused across reruns)
 # ──────────────────────────────────────────────────────────────────────
  
-@st.cache_resource(show_spinner="Loading embedding model...")
 
 class SimpleVectorStore:
     def __init__(self, chunks, matrix, vectorizer):
@@ -128,21 +127,21 @@ class SimpleVectorStore:
         self.vectorizer = vectorizer
 
     def similarity_search_with_score(self, query, k=3):
-      import numpy as np
+        import numpy as np
 
-      query_vec = self.vectorizer.transform([query]).toarray()
-      scores = np.dot(query_vec, self.matrix.T)[0]
-      norms = (np.linalg.norm(query_vec) * np.linalg.norm(self.matrix, axis=1))
-      norms = np.where(norms == 0, 1e-10, norms)
-      scores = scores / norms
-      top_k = np.argsort(scores)[::-1][:k]
+        query_vec = self.vectorizer.transform([query]).toarray()
+        scores = np.dot(query_vec, self.matrix.T)[0]
+        norms = (np.linalg.norm(query_vec) * np.linalg.norm(self.matrix, axis=1))
+        norms = np.where(norms == 0, 1e-10, norms)
+        scores = scores / norms
+        top_k = np.argsort(scores)[::-1][:k]
 
-      class Doc:
-         def __init__(self, content):
-            self.page_content = content
+        class Doc:
+            def __init__(self, content):
+                self.page_content = content
 
-      return [(Doc(self.chunks[i]), 1 - float(scores[i]))
-            for i in top_k]
+        return [(Doc(self.chunks[i]), 1 - float(scores[i]))
+                for i in top_k]
     
 
 @st.cache_resource(show_spinner="Building vector database...")
