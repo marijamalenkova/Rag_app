@@ -128,19 +128,22 @@ class SimpleVectorStore:
         self.vectorizer = vectorizer
 
     def similarity_search_with_score(self, query, k=3):
-        from sklearn.metrics.pairwise import cosine_similarity
-        import numpy as np
+      import numpy as np
 
-        query_vec = self.vectorizer.transform([query])
-        scores = cosine_similarity(query_vec, self.matrix)[0]
-        top_k = np.argsort(scores)[::-1][:k]
+      query_vec = self.vectorizer.transform([query]).toarray()
+      scores = np.dot(query_vec, self.matrix.T)[0]
+      norms = (np.linalg.norm(query_vec) * np.linalg.norm(self.matrix, axis=1))
+      norms = np.where(norms == 0, 1e-10, norms)
+      scores = scores / norms
+      top_k = np.argsort(scores)[::-1][:k]
 
-        class Doc:
-            def __init__(self, content):
-                self.page_content = content
+      class Doc:
+         def __init__(self, content):
+            self.page_content = content
 
-        return [(Doc(self.chunks[i]), 1 - float(scores[i]))
-                for i in top_k]
+      return [(Doc(self.chunks[i]), 1 - float(scores[i]))
+            for i in top_k]
+    
 
 @st.cache_resource(show_spinner="Building vector database...")
 def build_vector_store(_documents: tuple):
@@ -158,7 +161,8 @@ def build_vector_store(_documents: tuple):
         chunks.extend(splitter.split_text(doc))
 
     vectorizer = TfidfVectorizer()
-    matrix = vectorizer.fit_transform(chunks)
+    matrix = vectorizer.fit_transform(chunks).toarray()
+
 
     return SimpleVectorStore(chunks, matrix, vectorizer), chunks
 
